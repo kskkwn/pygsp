@@ -549,7 +549,7 @@ def plot_signal(G, signal, default_qtg=True, **kwargs):
 def plt_plot_signal(G, signal, show_edges=None, cp=[-6, -3, 160],
                     vertex_size=None, vertex_highlight=False, climits=None,
                     colorbar=True, bar=False, bar_width=1, savefig=False,
-                    show_plot=False, plot_name=None):
+                    show_plot=False, plot_name=None,cmap="Blues"):
     r"""
     Plot a graph signal in 2D or 3D using matplotlib.
 
@@ -635,10 +635,10 @@ def plt_plot_signal(G, signal, show_edges=None, cp=[-6, -3, 160],
     # Plot signal
     if G.coords.shape[1] == 2:
         ax.scatter(G.coords[:, 0], G.coords[:, 1], s=vertex_size, c=signal,
-                   zorder=2)
+                   zorder=2, cmap=cmap)
     if G.coords.shape[1] == 3:
         ax.scatter(G.coords[:, 0], G.coords[:, 1], G.coords[:, 2],
-                   s=vertex_size, c=signal, zorder=2)
+                   s=vertex_size, c=signal, zorder=2, cmap=cmap)
 
     # Save plot as PNG or show it in a window
     if savefig:
