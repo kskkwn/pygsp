@@ -40,7 +40,7 @@ class MexicanHat(Filter):
 
     """
 
-    def __init__(self, G, Nf=6, lpfactor=20, t=None, normalize=False,
+    def __init__(self, G, Nf=6, lpfactor=20, t=None, normalize=False, lminfac=None,
                  **kwargs):
         super(MexicanHat, self).__init__(G, **kwargs)
 
@@ -53,7 +53,10 @@ class MexicanHat(Filter):
         gb = lambda x: x * np.exp(-x)
         gl = lambda x: np.exp(-np.power(x, 4))
 
-        lminfac = .4 * G.lmin
+        if lminfac is None:
+            lminfac = .4 * G.lmin
+        else:
+            lminfac = lminfac
 
         g = [lambda x: 1.2 * exp(-1) * gl(x / lminfac)]
 
